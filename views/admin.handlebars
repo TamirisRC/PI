@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento de Professores</title>
+</head>
+<body>
+    <h1>Professores</h1>
+    <form action="/users/add" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+        <br>
+        <label for="cpf">CPF:</label>
+        <input type="text" name="cpf" required>
+        <br>
+        <label for="role">Papel:</label>
+        <select name="role">
+            <option value="diretor">Diretor</option>
+            <option value="coordenador">Coordenador</option>
+            <option value="orientador">Orientador</option>
+            <option value="representante_tg">Representante TG</option>
+            <option value="representante_po">Representante PO</option>
+        </select>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" required>
+        <br>
+        <button type="submit">Adicionar Professor</button>
+    </form>
+    <h2>Lista de Professores</h2>
+    <ul>
+        {{#each professores}}
+            <li>
+                {{this.nome}} - {{this.role}} 
+                <form action="/users/delete" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <button type="submit">Deletar</button>
+                </form>
+            </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
